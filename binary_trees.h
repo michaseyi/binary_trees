@@ -19,6 +19,14 @@ struct binary_tree_s
 	struct binary_tree_s *right;
 };
 
+typedef struct binary_tree_s binary_tree_t;
+
+typedef struct binary_tree_s bst_t;
+
+typedef struct binary_tree_s avl_t;
+
+typedef struct binary_tree_s heap_t;
+
 /**
  * struct node_wrapper_s - Wraps the binary_tree_t type with an extra
  * position field
@@ -32,14 +40,6 @@ typedef struct node_wrapper_s
 	int position;
 	const binary_tree_t *node;
 } node_wrapper_t;
-
-typedef struct binary_tree_s binary_tree_t;
-
-typedef struct binary_tree_s bst_t;
-
-typedef struct binary_tree_s avl_t;
-
-typedef struct binary_tree_s heap_t;
 
 void binary_tree_print(const binary_tree_t *);
 
