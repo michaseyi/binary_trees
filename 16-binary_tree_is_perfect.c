@@ -32,13 +32,13 @@ size_t binary_tree_size(const binary_tree_t *tree)
 }
 
 /**
- * pow - returns the result of base^power
+ * raise_pow - returns the result of base^power
  * @base: base
  * @power: power
  * Return: base^power
  */
 
-size_t pow(int base, int power)
+size_t raise_pow(int base, int power)
 {
 	int val = 1;
 
@@ -62,6 +62,6 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	if (tree == NULL)
 		return (0);
-	expected_size = pow(2, binary_tree_height(tree) + 1) - 1;
+	expected_size = raise_pow(2, binary_tree_height(tree) + 1) - 1;
 	return (expected_size == binary_tree_size(tree));
 }
