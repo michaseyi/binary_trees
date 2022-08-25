@@ -13,6 +13,9 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 	const binary_tree_t *Queue[QUEUE_SIZE], *current;
 	int start = 0, end = 0;
 
+	if (func == NULL)
+		return;
+
 	Queue[end] = tree;
 	end = (end + 1) % QUEUE_SIZE;
 
@@ -31,4 +34,3 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 		}
 	}
 }
-
