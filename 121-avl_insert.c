@@ -1,6 +1,19 @@
 #include "binary_trees.h"
 
 /**
+ * is_balance - checks if a tree is balanced
+ * @tree: is a pointer to the root of the tree
+ * Return: is 1 if tree is balanced else 0
+ */
+
+int is_balance(avl_t *tree)
+{
+	int balance_factor = binary_tree_balance(tree);
+
+	return (balance_factor >= -1 &&
+			balance_factor <= 1);
+}
+/**
  * balance - balances an avl tree
  * @tree: node to start balancing from
  * Return: is a pointer to the root node of the tree
@@ -14,25 +27,19 @@ avl_t *balance(avl_t *tree)
 	while (current)
 	{
 		next = current->parent;
-		balance_factor = binary_tree_balance(current);
+		balance_factor = -binary_tree_balance(current);
 		if (balance_factor > 1)
-			new_root = binary_tree_rotate_right(current);
+			new_root = binary_tree_rotate_left(current);
 		else if (balance_factor < -1)
+			new_root = binary_tree_rotate_right(current);
+		else if (next && !is_balance(next) && balance_factor < 0 &&
+				 current->n > next->n)
+			new_root = binary_tree_rotate_right(current);
+		else if (next && !is_balance(next) && balance_factor > 0 &&
+				 current->n < next->n)
 			new_root = binary_tree_rotate_left(current);
 		else
-		{
-			balance_factor = binary_tree_balance(next);
-			if ((balance_factor > 1 || balance_factor < -1) &&
-				(!current->right || next->n > current->right->n))
-				new_root = !current->right
-							   ? binary_tree_rotate_right(current)
-						   : !current->left
-							   ? binary_tree_rotate_left(current)
-							   : current;
-			else
-				new_root = current;
-		}
-
+			new_root = current;
 		if (next && next->left == current)
 			next->left = new_root;
 		else if (next && next->right == current)
