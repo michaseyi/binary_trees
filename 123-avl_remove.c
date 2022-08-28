@@ -76,15 +76,13 @@ avl_t *avl_remove(avl_t *root, int value)
 		{
 			free(root);
 			root = NULL;
-		}
-		else if (root->left && !root->right)
+		} else if (root->left && !root->right)
 		{
 			temp = root;
 			root->left->parent = root->parent;
 			root = root->left;
 			free(temp);
-		}
-		else if (root->right && !root->left)
+		} else if (root->right && !root->left)
 		{
 			temp = root;
 			root->right->parent = root->parent;
@@ -100,9 +98,11 @@ avl_t *avl_remove(avl_t *root, int value)
 	{
 		root->left = avl_remove(root->left, value);
 		!root->left ? root->right = balance_avl(root->right) : NULL;
+		root = balance_avl(root);
 	} else if (value > root->n)
 	{
 		root->right = avl_remove(root->right, value);
 		!root->right ? root->left = balance_avl(root->left) : NULL;
-	} return (balance_avl(root));
+		root = balance_avl(root);
+	} return (root);
 }
