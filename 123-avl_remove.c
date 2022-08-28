@@ -80,13 +80,13 @@ avl_t *avl_remove(avl_t *root, int value)
 		{
 			temp = root;
 			root->left->parent = root->parent;
-			root = root->left;
+			root = balance_avl(root->left);
 			free(temp);
 		} else if (root->right && !root->left)
 		{
 			temp = root;
 			root->right->parent = root->parent;
-			root = root->right;
+			root = balance_avl(root->right);
 			free(temp);
 		} else
 		{
