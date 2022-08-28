@@ -90,17 +90,19 @@ avl_t *avl_remove(avl_t *root, int value)
 			root->right->parent = root->parent;
 			root = root->right;
 			free(temp);
-		}
-		else
+		} else
 		{
 			min = min_node(root->right);
 			root->n = min;
 			root->right = avl_remove(root->right, min);
 		}
-	}
-	else if (value < root->n)
+	} else if (value < root->n)
+	{
 		root->left = avl_remove(root->left, value);
-	else if (value > root->n)
+		!root->left ? root->right = balance_avl(root->right) : NULL;
+	} else if (value > root->n)
+	{
 		root->right = avl_remove(root->right, value);
-	return (balance_avl(root));
+		!root->right ? root->left = balance_avl(root->right) : NULL;
+	} return (balance_avl(root));
 }
