@@ -103,6 +103,6 @@ avl_t *avl_remove(avl_t *root, int value)
 	} else if (value > root->n)
 	{
 		root->right = avl_remove(root->right, value);
-		!root->right ? root->left = balance_avl(root->right) : NULL;
+		!root->right ? root->left = balance_avl(root->left) : NULL;
 	} return (balance_avl(root));
 }
