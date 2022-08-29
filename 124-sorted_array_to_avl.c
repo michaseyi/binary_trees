@@ -13,14 +13,14 @@ avl_t *_sorted_array_to_avl(int *array, int size, avl_t *parent)
 	int middle;
 	avl_t *node;
 
-	if (size <= 0)
+	if (size < 1)
 		return (NULL);
 
-	middle = size / 2;
+	middle = (size - 1) / 2;
 	node = binary_tree_node(parent, array[middle]);
-	node->left = _sorted_array_to_avl(array, middle - 1, node);
+	node->left = _sorted_array_to_avl(array, middle, node);
 	node->right = _sorted_array_to_avl(array + middle + 1,
-												  size - middle, node);
+												  size - middle - 1, node);
 	return (node);
 }
 
