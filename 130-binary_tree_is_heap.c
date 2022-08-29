@@ -27,6 +27,6 @@ int _binary_tree_is_heap(const binary_tree_t *tree)
 int binary_tree_is_heap(const binary_tree_t *tree)
 {
 	if (tree == NULL)
-		return (NULL);
+		return (0);
 	return (_binary_tree_is_heap(tree));
 }
