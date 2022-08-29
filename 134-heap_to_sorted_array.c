@@ -28,6 +28,8 @@ int *heap_to_sorted_array(heap_t *heap, size_t *size)
 {
 	int *array, i = 0;
 
+	if (heap == NULL || size == NULL)
+		return (NULL);
 	*size = binary_tree_size((const binary_tree_t *)heap);
 	array = malloc(sizeof(int) * *size);
 	if (array == NULL)
